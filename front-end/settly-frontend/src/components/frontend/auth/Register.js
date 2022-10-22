@@ -33,7 +33,7 @@ function Register (){
                                         <input type='password' name='confirm_password' placeholder='Confirm Password' className='form-control' ></input>
                                     </div>
                                     <div className='form-group mb-3'>
-                                        <button className='btn btn-primary w-100'>Register Now</button>
+                                        <button type='submit' className='btn btn-primary w-100'>Register Now</button>
                                     </div>
                                 </form>
                             </div>
