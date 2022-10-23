@@ -5,6 +5,8 @@ import Home from './components/frontend/Home';
 import Login from './components/frontend/auth/Login';
 import Register from './components/frontend/auth/Register';
 import axios from 'axios';
+import Page403 from './components/errors/Page403';
+import Page404 from './components/errors/Page404';
 import AdminPrivateRoute from './AdminPrivateRoute';
 
 axios.defaults.baseURL='http://settly.test/';
@@ -24,6 +26,9 @@ function App() {
         <Switch>
           
           <Route exact path="/" component={Home}></Route>
+
+          <Route path="/403" component={Page403}></Route>
+          <Route path="/404" component={Page404}></Route>
           
           <Route path="/login">
             {localStorage.getItem('auth_token') ? <Redirect to='/'></Redirect>:<Login></Login>}
