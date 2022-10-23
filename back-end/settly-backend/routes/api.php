@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ClientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function() {
     Route::get('/checkingAuthenticated', function(){
         return response()->json(['message'=>'Permission granted.','status'=>200], 200);
     });
+
+    //client
+    Route::post('store-client',[ClientsController::class,'store']);
 
 });
 
