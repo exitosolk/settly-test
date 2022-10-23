@@ -5,6 +5,7 @@ import Home from './components/frontend/Home';
 import Login from './components/frontend/auth/Login';
 import Register from './components/frontend/auth/Register';
 import axios from 'axios';
+import AdminPrivateRoute from './AdminPrivateRoute';
 
 axios.defaults.baseURL='http://settly.test/';
 axios.defaults.headers.post['Content-Type']='application/json';
@@ -32,7 +33,9 @@ function App() {
             {localStorage.getItem('auth_token') ? <Redirect to='/'></Redirect>:<Register></Register>}
           </Route>
 
-          <Route path='/admin' name="Admin" render={(props)=> <MasterLayout {...props}></MasterLayout>} ></Route>
+          {/* <Route path='/admin' name="Admin" render={(props)=> <MasterLayout {...props}></MasterLayout>} ></Route> */}
+
+          <AdminPrivateRoute path='/admin' name="Admin"></AdminPrivateRoute>
           
         </Switch>
       </Router>
