@@ -54,7 +54,7 @@ function AddClient(){
             <div className="card mt-4">
                 <div className="card-header">
                     <h4>Add New Client</h4>
-                    <Link to="/admin/view-client" className="btn btn-primary btn-sm float-end">View Product</Link>
+                    <Link to="/admin/view-client" className="btn btn-primary btn-sm float-end">View Client List</Link>
                 </div>
 
                 <div className="card-body">
