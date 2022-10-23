@@ -19,7 +19,7 @@ function Register (){
 
     const handleInput = (e) =>{
         e.persist();
-        setRegister({...registerInput,[e.target.first_name]:e.target.value});
+        setRegister({...registerInput,[e.target.name]:e.target.value});
     }
 
     const registerSubmit = (e) =>{
@@ -61,7 +61,7 @@ function Register (){
                             <div className='card-body'>
                                 <form onSubmit={registerSubmit}>
                                     <div className='form-group mb-3'>
-                                        <input type='text' name='first_name' onChange={handleInput} value={registerInput.first_name} placeholder='First Name' className='form-control' ></input>
+                                        <input type='text' name='first_name' onChange={handleInput}  value={registerInput.first_name} placeholder='First Name' className='form-control' ></input>
                                         <span className='text-danger'>{registerInput.error_list.first_name}</span>
                                     </div>
                                     <div className='form-group mb-3'>
