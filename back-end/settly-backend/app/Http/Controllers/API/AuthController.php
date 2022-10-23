@@ -16,14 +16,14 @@ class AuthController extends Controller
             'first_name' => 'required',
             'sur_name' =>'required',
             'email'=>'email|unique:users,email|required_with:confirm_email|same:confirm_email|max:191',
-            'confirm_email' =>'max:191',
+            'confirm_email' =>'required|max:191',
             'password'=>'min:6|required_with:confirm_password|same:confirm_password',
             'confirm_password'=>'min:6',
         ]);
 
         if($validator->fails()){
             return response()->json([
-                'validation_error'=>$validator->messages(),
+                'validation_errors'=>$validator->messages(),
             ]);
         }else{
             $user = User::create([
