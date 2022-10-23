@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../../../layouts/frontend/Navbar';
+import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 
 function Register (){
 
+    const history = useHistory();
     const [registerInput, setRegister] = useState({
         first_name:'',
         sur_name:'',
@@ -11,10 +14,11 @@ function Register (){
         confirm_email:'',
         password:'',
         confirm_password:'',
+        error_list:[],
     });
 
     const handleInput = (e) =>{
-        e.presist();
+        e.persist();
         setRegister({...registerInput,[e.target.first_name]:e.target.value});
     }
 
@@ -29,10 +33,19 @@ function Register (){
             confirm_password:registerInput.confirm_password,
         }
 
-        axios.post(`/api/register`, data).then(res => {
-
-        })
-
+        axios.get('/sanctum/csrf-cookie').then(response => {
+            axios.post(`/api/register`, data).then(res => {
+                if(res.data.status === 200){
+                    localStorage.setItem('auth_token',res.data.token);
+                    localStorage.setItem('auth_name',res.data.username);
+                    swal("success", res.data.message,"success");
+                    history.push('/');
+                }
+                else{
+                    setRegister({...registerInput,error_list: res.data.validation_errors});
+                }
+            });
+        });
     }
 
     return (
@@ -49,21 +62,27 @@ function Register (){
                                 <form onSubmit={registerSubmit}>
                                     <div className='form-group mb-3'>
                                         <input type='text' name='first_name' onChange={handleInput} value={registerInput.first_name} placeholder='First Name' className='form-control' ></input>
+                                        <span className='text-danger'>{registerInput.error_list.first_name}</span>
                                     </div>
                                     <div className='form-group mb-3'>
                                         <input type='text' name='sur_name' onChange={handleInput} value={registerInput.sur_name} placeholder='Sir Name' className='form-control' ></input>
+                                        <span className='text-danger'>{registerInput.error_list.sur_name}</span>
                                     </div>
                                     <div className='form-group mb-3'>
                                         <input type='email' name='email' onChange={handleInput} value={registerInput.email} placeholder='Email Address' className='form-control' ></input>
+                                        <span className='text-danger'>{registerInput.error_list.email}</span>
                                     </div>
                                     <div className='form-group mb-3'>
                                         <input type='email' name='confirm_email' onChange={handleInput} value={registerInput.confirm_email} placeholder='Confirm Email Address' className='form-control' ></input>
+                                        <span className='text-danger'>{registerInput.error_list.confirm_email}</span>
                                     </div>
                                     <div className='form-group mb-3'>
                                         <input type='password' name='password' onChange={handleInput} value={registerInput.password} placeholder='Password' className='form-control' ></input>
+                                        <span className='text-danger'>{registerInput.error_list.password}</span>
                                     </div>
                                     <div className='form-group mb-3'>
                                         <input type='password' name='confirm_password' onChange={handleInput} value={registerInput.confirm_password} placeholder='Confirm Password' className='form-control' ></input>
+                                        <span className='text-danger'>{registerInput.error_list.confirm_password}</span>
                                     </div>
                                     <div className='form-group mb-3'>
                                         <button type='submit' className='btn btn-primary w-100'>Register Now</button>
