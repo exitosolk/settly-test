@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ClientsController extends Controller
 {
+    public function index(){
+        $client = Clients::where('added_by', '=', auth()->user()->id)->get();
+        return response()->json([
+            'status'=>200,
+            'client'=>$client,
+        ]);
+    }
+
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'name' => 'required',

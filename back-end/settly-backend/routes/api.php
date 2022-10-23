@@ -26,6 +26,7 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function() {
     });
 
     //client
+    Route::get('view-client',[ClientsController::class,'index']);
     Route::post('store-client',[ClientsController::class,'store']);
 
 });
