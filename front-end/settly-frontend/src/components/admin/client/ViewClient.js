@@ -33,7 +33,7 @@ function ViewClient(){
                         {item.id}
                     </td>
                     <td>
-                    <img src="/uploads/clients/1666544184.png" alt="test" />
+                        <img src={item.image} width="50px"/>
                     </td>
                     <td>
                         {item.name}
