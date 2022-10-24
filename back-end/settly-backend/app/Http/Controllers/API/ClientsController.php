@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\File;
 
 class ClientsController extends Controller
 {
+     /**
+        * List all the clients.
+        *
+        * @return Response
+        */
     public function index(){
         $client = Clients::where('added_by', '=', auth()->user()->id)->get();
         return response()->json([
@@ -19,6 +24,11 @@ class ClientsController extends Controller
         ]);
     }
 
+     /**
+        * Store a newly created client.
+        *
+        * @return Response
+        */
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'name' => 'required',
@@ -57,6 +67,11 @@ class ClientsController extends Controller
         }
     }
 
+     /**
+        * Display client's old data in the edit view.
+        *
+        * @return Response
+        */
     public function edit($id){
         $client = Clients::find($id);
         if($client){
@@ -72,6 +87,11 @@ class ClientsController extends Controller
         }
     }
 
+     /**
+        * Update a client.
+        *
+        * @return Response
+        */
     public function update(Request $request, $id){
 
         $validator = Validator::make($request->all(),[
@@ -121,6 +141,11 @@ class ClientsController extends Controller
         }
     }
 
+     /**
+        * Removing a client.
+        *
+        * @return Response
+        */
     public function destroy($id){
         $client = Clients::find($id);
         if($client){

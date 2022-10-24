@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+     /**
+        * Registering a new user.
+        *
+        * @return Response
+        */
     public function register(Request $request){
         $validator = Validator::make($request->all(),[
             'first_name' => 'required',
@@ -44,6 +49,11 @@ class AuthController extends Controller
         }
     }
 
+     /**
+        * Login for already registered users.
+        *
+        * @return Response
+        */
     public function login(Request $request){
         $validator = Validator::make($request->all(),[
             'email'=>'email|required|max:191',
@@ -84,6 +94,11 @@ class AuthController extends Controller
         }
     }
 
+     /**
+        * Log out for the logged in users.
+        *
+        * @return Response
+        */
     public function logout(){
         auth()->user()->tokens()->delete();
         return response()->json([
