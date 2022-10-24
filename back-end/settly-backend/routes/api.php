@@ -29,6 +29,8 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function() {
     Route::get('view-client',[ClientsController::class,'index']);
     Route::post('store-client',[ClientsController::class,'store']);
     Route::delete('delete-client/{id}',[ClientsController::class,'destroy']);
+    Route::get('edit-client/{id}',[ClientsController::class,'edit']);
+    Route::post('update-client/{id}',[ClientsController::class,'update']);
 
 });
 
