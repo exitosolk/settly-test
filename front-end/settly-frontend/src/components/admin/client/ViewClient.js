@@ -50,7 +50,7 @@ function ViewClient(){
                         {item.id}
                     </td>
                     <td>
-                        <img src={item.image} width="50px"/>
+                    <img src={`http://settly.test/${item.image}`} className='img-thumbnail' width='50px'></img>
                     </td>
                     <td>
                         {item.name}
