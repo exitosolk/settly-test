@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Mail;
-use App\Mail\WeeklyEmail;
+use App\Mail\WeeklyMail;
 use App\Models\Clients;
 
 class AutoWeeklyEmail extends Command
@@ -43,7 +43,7 @@ class AutoWeeklyEmail extends Command
 
         if ($clients->count() > 0) {
             foreach ($clients as $client) {
-                Mail::to($client)->send(new WeeklyEmail($client));
+                Mail::to($client)->send(new WeeklyMail($client));
             }
         }
 
