@@ -35,10 +35,14 @@ function Navbar (){
     }else{
 
         AuthButtons = (
-            
-            <li className="nav-item">
-                <button type='button' onClick={logoutSubmit} className="nav-link btn btn-danger btn-sm text-white">Logout</button>
-            </li>
+            <ul className='navbar-nav'>
+                <li className="nav-item">
+                    <Link className="nav-link active" aria-current="page" to="/admin/dashboard">Dashboard</Link>
+                </li>
+                <li className="nav-item">
+                    <button type='button' onClick={logoutSubmit} className="nav-link btn btn-danger btn-sm text-white">Logout</button>
+                </li>
+             </ul>
         )
     }
 
@@ -52,7 +56,7 @@ function Navbar (){
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                        <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                     </li>
                     {AuthButtons}
                 </ul>
