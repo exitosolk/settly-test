@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../../../layouts/frontend/Navbar';
+import {Link} from 'react-router-dom';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 
@@ -49,12 +50,12 @@ function Login (){
     return (
         <div>
             <Navbar></Navbar>
-            <div className='container py-5'>
+            <div className='container py-5 login'>
                 <div className='row justify-content-center'>
-                    <div className='col-md-6'>
+                    <div className='col-md-4'>
                         <div className='card'>
                             <div className='card-header'>
-                                <h4>Login</h4>
+                                <h4 className='text-center'>Login</h4>
                             </div>
                             <div className='card-body'>
                                 <form onSubmit={loginSubmit}>
@@ -67,7 +68,8 @@ function Login (){
                                         <span className='text-danger'>{loginInput.error_list.password}</span>
                                     </div>
                                     <div className='form-group mb-3'>
-                                        <button type='submit' className='btn btn-primary w-100'>Login</button>
+                                        <button type='submit' className='btn btn-primary w-100 py-3'>Login</button>
+                                        <sapn className='d-inline-block mt-1'>No account yet? <Link className="nav-link" to="/register" className="txt txt-dark">Create one here.</Link></sapn>
                                     </div>
                                 </form>
                             </div>

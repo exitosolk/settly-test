@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navbar from '../../../layouts/frontend/Navbar';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
+import './Styles.css';
 
 function Register (){
 
@@ -51,12 +52,12 @@ function Register (){
     return (
         <div>
             <Navbar></Navbar>
-            <div className='container py-5'>
+            <div className='container py-5 register'>
                 <div className='row justify-content-center'>
-                    <div className='col-md-6'>
+                    <div className='col-md-4'>
                         <div className='card'>
                             <div className='card-header'>
-                                <h4>Create your account</h4>
+                                <h4 className='text-center'>Create your account</h4>
                             </div>
                             <div className='card-body'>
                                 <form onSubmit={registerSubmit}>
@@ -85,7 +86,7 @@ function Register (){
                                         <span className='text-danger'>{registerInput.error_list.confirm_password}</span>
                                     </div>
                                     <div className='form-group mb-3'>
-                                        <button type='submit' className='btn btn-primary w-100'>Register Now</button>
+                                        <button type='submit' className='btn btn-primary w-100 py-3'>Register Now</button>
                                     </div>
                                 </form>
                             </div>
