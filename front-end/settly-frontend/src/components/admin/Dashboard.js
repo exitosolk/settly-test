@@ -2,8 +2,9 @@ import React from 'react';
 
 function Dashboard(){
     
+    const user = localStorage.getItem("userData");
     return(
-        <h1>Dashboard</h1>
+        <h1>Welcome, {user}</h1>
     ) 
 }
 
