@@ -55,4 +55,20 @@ class ClientsController extends Controller
             ]);
         }
     }
+
+    public function destroy($id){
+        $client = Clients::find($id);
+        if($client){
+            $client->delete();
+            return response()->json([
+                'status' => 200,
+                'message'=>'Client has been successfully removed.',
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'message'=>'Client not found',
+            ]);
+        }
+    }
 }
